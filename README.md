@@ -38,7 +38,7 @@ A Simple Job Portal API
 
 ## Additional Notes
 
-- I've noticed the assesment requirement requires the function 'register' to acts as a 'login' function, so there will be no endpoint for login
+- I've noticed the assesment requirement requires the function 'register' to act as a 'login' function, so there will be no endpoint for login
 - There will be additional files added to this github, the additional files will be :
   1. ERD
   2. Postman Collection
