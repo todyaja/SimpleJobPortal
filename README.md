@@ -22,17 +22,17 @@ A Simple Job Portal API
 
 ## Endpoints
 
-/api/register
+- /api/register
 
-#Talent
-GET /api/talent/job
-POST /api/talent/apply-job
-GET /api/talent/my-application/{applicationId}
+- #Talent
+- GET /api/talent/job
+- POST /api/talent/apply-job
+- GET /api/talent/my-application/{applicationId}
 
-#Employer
-POST /api/employer/job
-POST /api/employer/view-applicant/
-POST /api/employer/process-applicant
+- #Employer
+- POST /api/employer/job
+- POST /api/employer/view-applicant/
+- POST /api/employer/process-applicant
 
 ## Additional Notes
 
