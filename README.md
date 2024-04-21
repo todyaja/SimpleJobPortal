@@ -33,8 +33,8 @@ A Simple Job Portal API
 #Employer
 
 - POST /api/employer/job
-- POST /api/employer/view-applicant/
-- POST /api/employer/process-applicant
+- POST /api/employer/view-applicant
+- PUT /api/employer/process-applicant
 
 ## Additional Notes
 
