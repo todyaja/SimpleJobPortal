@@ -24,12 +24,14 @@ A Simple Job Portal API
 
 - /api/register
 
-- #Talent
+#Talent
+
 - GET /api/talent/job
 - POST /api/talent/apply-job
 - GET /api/talent/my-application/{applicationId}
 
-- #Employer
+#Employer
+
 - POST /api/employer/job
 - POST /api/employer/view-applicant/
 - POST /api/employer/process-applicant
