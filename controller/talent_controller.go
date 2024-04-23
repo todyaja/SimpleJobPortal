@@ -67,3 +67,25 @@ func (controller *TalentController) SeeApplicationDetail(writer http.ResponseWri
 
 	helper.WriteResponseBody(writer, webResp)
 }
+
+func (controller *TalentController) WithdrawApplication(writer http.ResponseWriter, requests *http.Request, params httprouter.Params) {
+	withdrawApplicationRequest := request.TalentWithdrawApplicationRequest{}
+	helper.ReadRequestBody(requests, &withdrawApplicationRequest)
+
+	token, err := helper.ReadBearerToken(requests)
+	helper.PanicIfError(err)
+
+	err = controller.TalentService.WithdrawApplication(requests.Context(), withdrawApplicationRequest.ApplicationId, token)
+
+	webResp := response.WebResponse{
+		Code:   200,
+		Status: "OK",
+	}
+	if err != nil {
+		webResp = response.WebResponse{
+			Code:   400,
+			Status: err.Error(),
+		}
+	}
+	helper.WriteResponseBody(writer, webResp)
+}

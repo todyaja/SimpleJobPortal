@@ -13,6 +13,71 @@ type EmployerRepositoryImpl struct {
 	Db *sql.DB
 }
 
+// UpdateJob implements EmployerRepository.
+func (b *EmployerRepositoryImpl) UpdateJob(ctx context.Context, id int, employerId int, job model.Job) error {
+	tx, err := b.Db.Begin()
+	helper.PanicIfError(err)
+
+	defer helper.CommitOrRollback(tx)
+
+	//Validate job creator same as the one who is going to delete job
+	SQL := `SELECT posted_by FROM public.job a
+			WHERE a.id = $1`
+
+	result, errQuery := tx.QueryContext(ctx, SQL, id)
+	helper.PanicIfError(errQuery)
+
+	defer result.Close()
+
+	var jobCreatorId int
+	for result.Next() {
+		err := result.Scan(&jobCreatorId)
+		helper.PanicIfError(err)
+	}
+
+	if jobCreatorId != employerId {
+		return errors.New("you are not authorized to update this job")
+	}
+	SQL = "UPDATE public.job SET title = $1, detail = $2, requirement = $3 WHERE id  = $4"
+	_, err = tx.ExecContext(ctx, SQL, job.Title, job.Detail, job.Requirement, id)
+	helper.PanicIfError(err)
+
+	return nil
+}
+
+// DeleteJob implements EmployerRepository.
+func (b *EmployerRepositoryImpl) DeleteJob(ctx context.Context, id int, employerId int) error {
+	tx, err := b.Db.Begin()
+	helper.PanicIfError(err)
+
+	defer helper.CommitOrRollback(tx)
+
+	//Validate job creator same as the one who is going to delete job
+	SQL := `SELECT posted_by FROM public.job a
+			WHERE a.id = $1`
+
+	result, errQuery := tx.QueryContext(ctx, SQL, id)
+	helper.PanicIfError(errQuery)
+
+	defer result.Close()
+
+	var jobCreatorId int
+	for result.Next() {
+		err := result.Scan(&jobCreatorId)
+		helper.PanicIfError(err)
+	}
+
+	if jobCreatorId != employerId {
+		return errors.New("you are not authorized to process this applicant")
+	}
+	SQL = "DELETE FROM public.job WHERE ID = $1"
+
+	_, errExec := tx.ExecContext(ctx, SQL, id)
+	helper.PanicIfError(errExec)
+	return nil
+
+}
+
 func NewEmployerRepository(Db *sql.DB) EmployerRepository {
 	return &EmployerRepositoryImpl{Db: Db}
 }

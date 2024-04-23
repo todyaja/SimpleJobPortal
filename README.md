@@ -23,23 +23,41 @@ A Simple Job Portal API
 ## Endpoints
 
 - /api/register
+- /api/login
 
 #Talent
 
 - GET /api/talent/job
 - POST /api/talent/apply-job
 - GET /api/talent/my-application/{applicationId}
+- PUT /api/employer/job/{jobId}
+- DELETE /api/employer/job/{jobId}
 
 #Employer
 
 - POST /api/employer/job
 - POST /api/employer/view-applicant
 - PUT /api/employer/process-applicant
+- POST /api/employer/withdraw-application
 
 ## Additional Notes
 
-- I've noticed the assesment requirement requires the function 'register' to act as a 'login' function, so there will be no endpoint for login
 - There will be additional files added to this github, the additional files will be :
   1. ERD
   2. Postman Collection
   3. The Assesment Question
+- Same email cant be registered twice, except its a different user type
+- Operations on job and application (update, delete, view) can only be done by the creator
+- Submitted application can't be updated
+
+- Application Status
+  1 = Ongoing
+  2 = Interview
+  3 = Accepted
+  4 = Rejected
+
+- User Type
+  1 = Talent
+  2 = Employer
+
+git commit -m 'added login endpoints, CRUD on job object and '

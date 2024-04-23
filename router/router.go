@@ -20,9 +20,12 @@ func NewRouter(
 
 	//User Controller
 	router.POST("/api/register", userController.Create)
+	router.POST("/api/login", userController.Login)
 
 	//Employer Controller
 	router.POST("/api/employer/job", employerController.CreateJob)
+	router.PUT("/api/employer/job/:jobId", employerController.UpdateJob)
+	router.DELETE("/api/employer/job/:jobId", employerController.DeleteJob)
 	router.POST("/api/employer/view-applicant", employerController.SeeJobApplicant)
 	router.PUT("/api/employer/process-applicant", employerController.ProcessApplicant)
 
@@ -30,6 +33,7 @@ func NewRouter(
 	router.GET("/api/talent/job", talentController.SeeJob)
 	router.POST("/api/talent/apply-job", talentController.ApplyJob)
 	router.GET("/api/talent/my-application/:applicationId", talentController.SeeApplicationDetail)
+	router.POST("/api/talent/withdraw-application", talentController.WithdrawApplication)
 
 	return router
 }

@@ -32,7 +32,50 @@ func (controller *UserController) Create(writer http.ResponseWriter, requests *h
 		return
 	}
 
-	resultToken := controller.UserService.Create(requests.Context(), userCreateRequest)
+	resultToken, err := controller.UserService.Create(requests.Context(), userCreateRequest)
+	if err != nil {
+		webResp := response.WebResponse{
+			Code:   200,
+			Status: err.Error(),
+			Data:   resultToken,
+		}
+
+		helper.WriteResponseBody(writer, webResp)
+		return
+	}
+	webResp := response.WebResponse{
+		Code:   200,
+		Status: "OK",
+		Data:   resultToken,
+	}
+
+	helper.WriteResponseBody(writer, webResp)
+}
+
+func (controller *UserController) Login(writer http.ResponseWriter, requests *http.Request, params httprouter.Params) {
+	userLoginRequest := request.UserLoginRequest{}
+	helper.ReadRequestBody(requests, &userLoginRequest)
+
+	if !helper.Valid(userLoginRequest.Email) {
+		webResp := response.WebResponse{
+			Code:   400,
+			Status: "Invalid Email Format",
+		}
+
+		helper.WriteResponseBody(writer, webResp)
+		return
+	}
+
+	resultToken, err := controller.UserService.Login(requests.Context(), userLoginRequest)
+	if err != nil {
+		webResp := response.WebResponse{
+			Code:   200,
+			Status: "wrong password",
+		}
+
+		helper.WriteResponseBody(writer, webResp)
+		return
+	}
 	webResp := response.WebResponse{
 		Code:   200,
 		Status: "OK",

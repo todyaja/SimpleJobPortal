@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"simplejobportal/helper"
 	"simplejobportal/model"
 )
@@ -14,6 +15,48 @@ type TalentRepositoryImpl struct {
 
 func NewTalentRepository(Db *sql.DB) TalentRepository {
 	return &TalentRepositoryImpl{Db: Db}
+}
+
+// DeleteApplication implements TalentRepository.
+func (b *TalentRepositoryImpl) DeleteApplication(ctx context.Context, id int, talentId int) error {
+	tx, err := b.Db.Begin()
+	helper.PanicIfError(err)
+
+	defer helper.CommitOrRollback(tx)
+
+	//Validate talent id is same as applicant id
+	SQL := `SELECT
+			applicant_id
+			FROM public.application a
+			WHERE a.id = $1`
+
+	result, errQuery := tx.QueryContext(ctx, SQL, id)
+	helper.PanicIfError(errQuery)
+
+	defer result.Close()
+
+	var applicantId int
+
+	for result.Next() {
+		err := result.Scan(&applicantId)
+		helper.PanicIfError(err)
+	}
+
+	fmt.Println(id)
+	fmt.Println(applicantId)
+	fmt.Println(talentId)
+
+	if applicantId != talentId {
+		return errors.New("you are not authorized to withdraw this application")
+	}
+
+	//Remove from application table
+	SQL = "DELETE FROM public.application WHERE ID = $1"
+
+	_, errExec := tx.ExecContext(ctx, SQL, id)
+	helper.PanicIfError(errExec)
+
+	return nil
 }
 
 // ViewApplicationDetail implements TalentRepository.

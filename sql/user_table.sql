@@ -4,5 +4,5 @@ CREATE TABLE public.user(
     "email" varchar NULL,
     "password" varchar NULL,
     CONSTRAINT user_pk PRIMARY KEY (id),
-    user_type INT REFERENCES user_type(id)
+    user_type INT REFERENCES user_type(id)  ON DELETE CASCADE
 )

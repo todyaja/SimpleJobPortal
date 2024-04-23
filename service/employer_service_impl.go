@@ -15,6 +15,46 @@ type EmployerServiceImpl struct {
 	EmployerRepository repository.EmployerRepository
 }
 
+// DeleteJob implements EmployerService.
+func (b *EmployerServiceImpl) DeleteJob(ctx context.Context, id int, jwtToken string) error {
+	claims, err := auth.ParseJWT(jwtToken)
+	helper.PanicIfError(err)
+
+	employerId := claims["userId"].(string)
+	userType := claims["userType"].(string)
+	auth.IsEmployer(userType)
+
+	employerIdInt, err := strconv.Atoi(employerId)
+
+	helper.PanicIfError(err)
+	err = b.EmployerRepository.DeleteJob(ctx, id, employerIdInt)
+
+	return err
+}
+
+// UpdateJob implements EmployerService.
+func (b *EmployerServiceImpl) UpdateJob(ctx context.Context, id int, request request.JobUpdateRequest, jwtToken string) error {
+	claims, err := auth.ParseJWT(jwtToken)
+	helper.PanicIfError(err)
+
+	employerId := claims["userId"].(string)
+	userType := claims["userType"].(string)
+	auth.IsEmployer(userType)
+
+	employerIdInt, err := strconv.Atoi(employerId)
+
+	helper.PanicIfError(err)
+
+	job := model.Job{
+		Title:       request.Title,
+		Detail:      request.Detail,
+		Requirement: request.Requirement,
+	}
+	err = b.EmployerRepository.UpdateJob(ctx, id, employerIdInt, job)
+
+	return err
+}
+
 func NewEmployerServiceImpl(employerRepository repository.EmployerRepository) EmployerService {
 	return &EmployerServiceImpl{EmployerRepository: employerRepository}
 }

@@ -6,6 +6,7 @@ import (
 	"simplejobportal/data/response"
 	"simplejobportal/helper"
 	"simplejobportal/service"
+	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -66,6 +67,55 @@ func (controller *EmployerController) ProcessApplicant(writer http.ResponseWrite
 	helper.PanicIfError(err)
 
 	err = controller.EmployerService.ProcessApplicant(requests.Context(), processApplicantRequest, token)
+
+	webResp := response.WebResponse{
+		Code:   200,
+		Status: "OK",
+	}
+	if err != nil {
+		webResp = response.WebResponse{
+			Code:   400,
+			Status: err.Error(),
+		}
+	}
+	helper.WriteResponseBody(writer, webResp)
+}
+
+func (controller *EmployerController) DeleteJob(writer http.ResponseWriter, requests *http.Request, params httprouter.Params) {
+	jobId := params.ByName("jobId")
+	jobIdInt, err := strconv.Atoi(jobId)
+	helper.PanicIfError(err)
+
+	token, err := helper.ReadBearerToken(requests)
+	helper.PanicIfError(err)
+
+	err = controller.EmployerService.DeleteJob(requests.Context(), jobIdInt, token)
+
+	webResp := response.WebResponse{
+		Code:   200,
+		Status: "OK",
+	}
+	if err != nil {
+		webResp = response.WebResponse{
+			Code:   400,
+			Status: err.Error(),
+		}
+	}
+	helper.WriteResponseBody(writer, webResp)
+}
+
+func (controller *EmployerController) UpdateJob(writer http.ResponseWriter, requests *http.Request, params httprouter.Params) {
+	jobId := params.ByName("jobId")
+	jobIdInt, err := strconv.Atoi(jobId)
+	helper.PanicIfError(err)
+
+	updateJobRequest := request.JobUpdateRequest{}
+	helper.ReadRequestBody(requests, &updateJobRequest)
+
+	token, err := helper.ReadBearerToken(requests)
+	helper.PanicIfError(err)
+
+	err = controller.EmployerService.UpdateJob(requests.Context(), jobIdInt, updateJobRequest, token)
 
 	webResp := response.WebResponse{
 		Code:   200,

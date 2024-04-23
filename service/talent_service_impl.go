@@ -19,6 +19,23 @@ func NewTalentServiceImpl(talentRepository repository.TalentRepository) TalentSe
 	return &TalentServiceImpl{TalentRepository: talentRepository}
 }
 
+// WithdrawApplication implements TalentService.
+func (b *TalentServiceImpl) WithdrawApplication(ctx context.Context, id int, jwtToken string) error {
+	claims, err := auth.ParseJWT(jwtToken)
+	helper.PanicIfError(err)
+
+	talentId := claims["userId"].(string)
+	userType := claims["userType"].(string)
+	auth.IsTalent(userType)
+
+	talentIdInt, err := strconv.Atoi(talentId)
+
+	helper.PanicIfError(err)
+	err = b.TalentRepository.DeleteApplication(ctx, id, talentIdInt)
+
+	return err
+}
+
 // ApplicationDetail implements TalentService.
 func (b *TalentServiceImpl) SeeApplicationDetail(ctx context.Context, applicationId int, jwtToken string) response.ApplicationDetailResponse {
 	claims, err := auth.ParseJWT(jwtToken)

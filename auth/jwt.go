@@ -74,7 +74,7 @@ func IsTalent(userType string) {
 
 	userTypeInt, err := strconv.Atoi(userType)
 	helper.PanicIfError(err)
-	//Validate if postedByInt != 2 throw error not authorize
+	//Validate if postedByInt != 1 throw error not authorize
 	if userTypeInt != 1 {
 		// Handle error: Not authorized
 		panic(errors.New("not authorized"))

@@ -4,5 +4,5 @@ CREATE TABLE public.job(
     "detail" varchar NULL,
     "requirement" varchar NULL,
     CONSTRAINT job_pk PRIMARY KEY (id),
-    posted_by INT REFERENCES public.user(id)
+    posted_by INT REFERENCES public.user(id)  ON DELETE CASCADE
 )

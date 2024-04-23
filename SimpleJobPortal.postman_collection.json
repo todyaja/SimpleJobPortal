@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQyMzg1NTUsInVzZXJJRCI6IjExIiwidXNlclR5cGUiOiIyIn0.F3gQ4bidtvQT07nFWE46NbnTKt2fJVX0PGanqbOjF8w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQ0NzkzMDAsInVzZXJJZCI6IjI3IiwidXNlclR5cGUiOiIyIn0.YfiPQCcXr9sV5zIK2EmEfirCIYbKYevZL3mIs0-HiCk",
 									"type": "string"
 								}
 							]
@@ -32,7 +32,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Backend Engineer 3\",\r\n    \"detail\" : \"detail 3 \",\r\n    \"requirement\" : \"requirement 3\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Job 1\",\r\n    \"detail\" : \"detail\",\r\n    \"requirement\" : \"requirement\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,6 +50,102 @@
 								"api",
 								"employer",
 								"job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQzOTMwMzMsInVzZXJJZCI6IjIzIiwidXNlclR5cGUiOiIyIn0.UTtbsdLRIm5b7w9IXfBRzlJX3PPq_SJrMFJIgrRMh70",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Update bro\",\r\n    \"detail\" : \"detail 3 \",\r\n    \"requirement\" : \"requirement 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/employer/job/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"employer",
+								"job",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQzOTMwMzMsInVzZXJJZCI6IjIzIiwidXNlclR5cGUiOiIyIn0.UTtbsdLRIm5b7w9IXfBRzlJX3PPq_SJrMFJIgrRMh70",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/employer/job/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"employer",
+								"job",
+								"7"
 							]
 						}
 					},
@@ -165,7 +261,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQyNDAzNjksInVzZXJJRCI6IjEyIiwidXNlclR5cGUiOiIxIn0.rpzL6OTU00yGapwHA6iYu5F8I6-vTRbi4kTZVTIeYn4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQ0NzkzMDksInVzZXJJZCI6IjI2IiwidXNlclR5cGUiOiIxIn0.RPRfcGJY3nt09zdjqPwBq5vwjeEG-MD9-cScXSXmtFE",
 									"type": "string"
 								}
 							]
@@ -205,7 +301,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQyNDQ4NTIsInVzZXJJRCI6IjEzIiwidXNlclR5cGUiOiIxIn0.EB40niI_QVPzGB9lnKvDjOHUeXuTCce8yZosMluzeX8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQ0NzkzMDksInVzZXJJZCI6IjI2IiwidXNlclR5cGUiOiIxIn0.RPRfcGJY3nt09zdjqPwBq5vwjeEG-MD9-cScXSXmtFE",
 									"type": "string"
 								}
 							]
@@ -214,7 +310,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"job_id\": 3\r\n}",
+							"raw": "{\r\n    \"job_id\": 8\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -238,6 +334,46 @@
 					"response": []
 				},
 				{
+					"name": "Withdraw Application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQ0Nzk2NTgsInVzZXJJZCI6IjI2IiwidXNlclR5cGUiOiIxIn0.U2xccStAGsSw08bFpME7Uv-1Nbsg60ctubLrdZpeZBw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"application_id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/talent/withdraw-application",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"talent",
+								"withdraw-application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "See Applicant Detail",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -248,7 +384,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQyNDAzNjksInVzZXJJRCI6IjEyIiwidXNlclR5cGUiOiIxIn0.rpzL6OTU00yGapwHA6iYu5F8I6-vTRbi4kTZVTIeYn4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkQXQiOjE3MTQ0NzkzMDksInVzZXJJZCI6IjI2IiwidXNlclR5cGUiOiIxIn0.RPRfcGJY3nt09zdjqPwBq5vwjeEG-MD9-cScXSXmtFE",
 									"type": "string"
 								}
 							]
@@ -284,33 +420,67 @@
 			]
 		},
 		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"employer 2\",\r\n    \"email\" : \"emplawda@gmail.com\",\r\n    \"password\" : \"password\",\r\n    \"user_type\" : 2\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\" : \"user@gmail.com\",\r\n    \"password\" : \"password\",\r\n    \"user_type\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:1234/api/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1234",
-					"path": [
-						"api",
-						"register"
-					]
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"talent@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
