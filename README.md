@@ -59,5 +59,3 @@ A Simple Job Portal API
 - User Type
   1 = Talent
   2 = Employer
-
-git commit -m 'added login endpoints, CRUD on job object and '
